@@ -18,6 +18,10 @@
 	<ItemGroup>
 		<Protobuf Include="Protos\CentralControl.proto" GrpcServices="Server" />
 	</ItemGroup>
+	
+	<ItemGroup>
+		<Protobuf Include="Protos\FirstTest.proto" GrpcServices="Server" />
+	</ItemGroup>
 
   <ItemGroup>
     <Folder Include="Core\" />
