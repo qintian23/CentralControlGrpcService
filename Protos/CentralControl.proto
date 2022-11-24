@@ -1,0 +1,132 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "CentralControlGrpcService";
+
+package CentralControl;
+
+/// <summary>
+/// 发送给客户端 
+/// </summary>
+service CentralControl{
+
+    /// <summary>
+    /// 心跳-中控响应
+    /// </summary>
+	rpc HeartBeatResp(Param1) returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// 屏幕（背光）亮灭控制-中控响应
+    /// </summary>
+	rpc ScreenBrightOutResp(Param2) returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// WIFI启用、禁用控制-中控响应
+    /// </summary>
+	rpc WIFICtrlResp(Param2) returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// 通知应用关闭电脑控制-中控上报
+    /// </summary>
+	rpc NoticeAppShutdownReport(Param1) returns (google.protobuf.Empty);
+
+	/// <summary>
+    /// 功放板音量调节-中控响应
+    /// </summary>
+    rpc PowerAmplifierVolumeCtrlResp(Param1)returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// 功放板模式调节-中控响应
+    /// </summary>
+    rpc PowerAmplifierModeCtrlResp(Param1)returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// 提笔和放笔的上报-中控上报
+    /// </summary>
+    rpc TakePutPenReport(Param3)returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// 光照强度-中控上报
+    /// </summary>
+    rpc LightIntensityReport(Param3)returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// 温湿度-中控上报
+    /// </summary>
+    rpc HumitureDataReport(Param2) returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// 人体传感器-中控上报
+    /// </summary>
+    rpc BodySensorReport(Param1) returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// N640图片显示-中控响应
+    /// </summary>
+    rpc N640PicShowResp(Param5) returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// N640截图操作-中控响应
+    /// </summary>
+    rpc N640ScreenShotResp(Param5) returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// 信号源切换-中控响应
+    /// </summary>
+    rpc SignalSwitchResp(Param4) returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// 分辨率-中控响应
+    /// </summary>
+    rpc ResolutionResp(Param2) returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// 是否有信号-中控响应事件
+    /// </summary>
+    rpc HasSignalResp(Param2) returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// 功放板音量查询-中控响应事件
+    /// </summary>
+    rpc PowerAmplifierVolumeQueryResp(Param2) returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// 功放板音效查询-中控响应事件
+    /// </summary>
+    rpc PowerAmplifierModeQueryResp(Param2) returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// 中控状态查询-回复-事件
+    /// </summary>
+    rpc StatusQueryResp(Param3) returns (google.protobuf.Empty);
+
+    /// <summary>
+    /// 设置中控状态-回复-事件
+    /// </summary>
+    rpc SetCtCtrlStatusResp(Param2) returns (google.protobuf.Empty);
+}
+
+message Param1{
+	bool b1 = 1;
+}
+
+message Param2{
+	string t1 = 1;
+	string t2 = 2;
+}
+
+message Param3{
+    string t1 = 1;
+}
+
+message Param4{
+    string t1 = 1;
+	string t2 = 2;
+    bool b1 = 3;
+}
+
+message Param5{
+    string t1 = 1;
+    bool b1 = 2;
+}
