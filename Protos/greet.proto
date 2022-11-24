@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option csharp_namespace = "CentralControlGrpcService";
+
+package helloworld;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply);
+
+  rpc SendMsg(GrpcData) returns (GrpcResult);
+
+  rpc ReceiveDataFromServer(GrpcData) returns (stream GrpcData);
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings.
+message HelloReply {
+  string message = 1;
+}
+
+
+message GrpcData {
+  string Ip = 1;
+  int32 Port = 2;
+  string DataId = 3;
+  int32 DataPriority = 4;
+  string DataType = 5;
+  string Conntent = 6;
+  string NodeName = 7;
+}
+ 
+message GrpcResult{
+	bool result = 1;
+}
