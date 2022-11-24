@@ -1,0 +1,197 @@
+﻿syntax = "proto3" returns (google.protobuf.Empty);
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "CentralControlGrpcService";
+
+package CentralControlReceive;
+
+service CentralControlReceive{
+	    /// <summary>
+        /// 发送数据-N640图片显示
+        /// </summary>
+        rpc SendN640PicShow(byte cmdParam) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 发送数据-N640截图操作
+        /// </summary>
+        rpc SendN640ScreenShot(byte cmdParam) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 信号源切换
+        /// </summary>
+        /// <param name="cmdInput">输入源</param>
+        /// <param name="cmdOutput">输出源</param>
+        rpc SendSignalSwitch(byte cmdInput, byte cmdOutput) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 获取分辨率
+        /// </summary>
+        /// <param name="src">信号源选择 01-HDMI1 02-HDMI1 03-HDMI1 04-HDMI1 </param>
+        rpc SendResolution(byte src) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// HDMI口是否存在信号查询
+        /// </summary>
+        /// <param name="src">信号源选择 01-HDMI1 02-HDMI1 03-HDMI1 04-HDMI1 </param>
+        rpc SendCheckSignal(byte src) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 发送心跳包
+        /// </summary>
+        rpc SendHeartBeatData() returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 发送屏幕（背光）亮灭控制
+        /// </summary>
+        /// <param name="isBright">是否亮屏 true-亮 false-灭</param>
+        rpc SendScreenBrightOut(bool isBright) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 发送WIFI启用、禁用控制
+        /// </summary>
+        /// <param name="isEnable">是否启用 0x01-启用 0x02-关闭</param>
+        rpc SendWIFICtrl(bool isEnable) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 回复-通知应用关闭电脑控制
+        /// </summary>
+        /// <param name="shutDownType">关机类型：假关机、断电关机</param>
+        /// <param name="isSuccessed">是否成功 0x01-成功 0x02-失败</param>
+        rpc RespNoticeAppShutdown(byte shutDownType, byte isSuccessed) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 发送功放板音量调节
+        /// </summary>
+        /// <param name="volumeValue">音量值（0-100）</param>
+        rpc SendPowerAmplifierVolumeCtrl(byte volumeValue) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 发送功放板模式调节
+        /// </summary>
+        /// <param name="mode">音效模式</param>
+        rpc SendPowerAmplifierModeCtrl(byte mode) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 回复提笔和放笔的上报
+        /// </summary>
+        /// <param name="cmdParam"></param>
+        /// <param name="isSuccessed"></param>
+        rpc RespTakePutPenReport(byte cmdParam, byte isSuccessed) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 发送-功放板音量查询
+        /// </summary>
+        rpc SendPowerAmplifierVolumeQuery() returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 发送-功放板音效查询
+        /// </summary>
+        rpc SendPowerAmplifierModeQuery() returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 配置中控串口
+        /// </summary>
+        /// <param name="channel">串口通道</param>
+        /// <param name="datab">数据位</param>
+        /// <param name="dpaity">校验位</param>
+        /// <param name="stopb1">停止位1</param>
+        /// <param name="stopb2">停止位2</param>
+        /// <param name="baudr">波特率</param>
+        rpc SendConfigSerialPort(byte channel, byte datab, byte dpaity, byte stopb1, byte stopb2, byte baudr) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 串口发送
+        /// </summary>
+        /// <param name="channel">串口通道</param>
+        /// <param name="senddata">串口发送数据</param>
+        rpc SerialSend(byte channel, byte[] senddata) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 串口接收完成回复
+        /// </summary>
+        /// <param name="channel">串口通道</param>
+        /// <param name="isSuccessed">是否接收成功</param>
+        rpc RespSerialReceive(byte channel, byte isSuccessed) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 回复IO触发
+        /// </summary>
+        /// <param name="channel">IO触发通道</param>
+        /// <param name="level">高低电平 0x01-高电平 0x02-低电平</param>
+        /// <param name="isSucessed">是否成功 0x01-成功 0x02-失败</param>
+        rpc RespUPIO(byte channel, byte level, byte isSucessed) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 使能继电器
+        /// </summary>
+        /// <param name="channel">继电器通道</param>
+        /// <param name="isEnable">继电器开关 0x01-开启 0x02-关闭</param>
+        rpc CtrlRelay(byte channel, byte isEnable) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 开启红外学习
+        /// </summary>
+        rpc StartInfraredLearn() returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 发送红外数据
+        /// </summary>
+        /// <param name="index">红外索引号</param>
+        /// <param name="infrareddata">红外数据</param>
+        rpc SendInfraredData(byte index, byte[] infrareddata) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 回复红外接收数据
+        /// </summary>
+        /// <param name="index">红外索引号</param>
+        /// <param name="isSucessed">是否成功 0x01-成功 0x02-失败</param>
+        rpc RespInfraredData(byte index, byte isSucessed) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 光照强度
+        /// </summary>
+        /// <param name="isSuccessed">是否接收成功</param>
+        rpc RespLightIntensity(byte isSuccessed) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 温湿度
+        /// </summary>
+        /// <param name="isSuccessed">是否接收成功</param>
+        rpc RespHumitureData(byte isSuccessed) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 人体传感器
+        /// </summary>
+        /// <param name="isSuccessed">是否接收成功</param>
+        rpc RespBodySensor(byte isSuccessed) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 发送触摸HID数据
+        /// </summary>
+        rpc SendTouchHIDData(byte[] hiddata) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 发送-中控状态查询
+        /// </summary>
+        rpc SendStatusQuery() returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 发送-设置中控状态
+        /// </summary>
+        /// <param name="status"></param>
+        rpc SendSetCtCtrlStatus(byte status) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 发送设置音源输出
+        /// </summary>
+        /// <param name="src"></param>
+        rpc SendSetSoundSrc(byte src) returns (google.protobuf.Empty);
+
+        /// <summary>
+        /// 发送-输入设备音量调节
+        /// </summary>
+        /// <param name="devType"></param>
+        /// <param name="value"></param>
+        rpc SendSetDevInVolume(byte devType, byte value) returns (google.protobuf.Empty);
+}
